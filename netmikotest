@@ -1,0 +1,25 @@
+from netmiko import ConnectHandler
+
+cisco_device = {
+    'device_type' : 'cisco_ios',
+    'host' : '10.1.1.10',
+    'username' : 'cisco',
+    'password' :'cisco',
+    'port' : 22,
+    'secret' : 'cisco',
+    'verbose' :True
+    }
+
+
+
+connection = ConnectHandler(**cisco_device)
+
+#enable
+connection.enable()
+
+output = connection.send_command('sh run')
+print(output)
+
+print ('closing connection')
+
+connection.disconnect()
